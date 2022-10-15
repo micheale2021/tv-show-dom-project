@@ -11,7 +11,11 @@ function makePageForEpisodes(episodeList) {
   // title.innerHTML = "TV SHOW";
   // title.style.textAlign = "center";
   // rootElem.appendChild(title);
+  const selectEl = document.createElement("select")
+  selectEl.style.width = "30%"
+  
   const inputEl = document.createElement("input")
+  rootElem.appendChild(selectEl);
   rootElem.appendChild(inputEl);
   const pEl = document.createElement("p")
   pEl.innerHTML = `Displaying 0/${episodeList.length} episodes`
@@ -19,6 +23,9 @@ function makePageForEpisodes(episodeList) {
   rootElem.appendChild(pEl);
   rootElem.appendChild(contentEl)
   for (let i = 0; i < episodeList.length; i++) {
+    const optionEl = document.createElement("option")
+    optionEl.innerHTML = `S0${episodeList[i].season}E${episodeList[i].number} - ${episodeList[i].name}`
+    selectEl.appendChild(optionEl);
     const cardsEl = document.createElement("div");
     cardsEl.setAttribute("class", "cards")
     cardsEl.style.width = "30%";
@@ -26,7 +33,7 @@ function makePageForEpisodes(episodeList) {
     contentEl.appendChild(cardsEl);
     const h3El = document.createElement("h3");
     h3El.setAttribute("class", "title")
-    h3El.innerHTML = `${episodeList[i].name} - S${episodeList[i].season}E${episodeList[i].number}`;
+    h3El.innerHTML = `${episodeList[i].name} - S0${episodeList[i].season}E${episodeList[i].number}`;
     const imageEl = document.createElement("img")
     imageEl.setAttribute("src", episodeList[i].image.medium);
     imageEl.setAttribute("class", "mediumImg")
