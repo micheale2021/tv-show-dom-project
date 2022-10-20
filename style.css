@@ -1,5 +1,5 @@
-body{
-  background-color: #f4f4f4;
+/* body{
+  background-color: #111d4a;
 }
 #root {
   color: red; 
@@ -11,6 +11,17 @@ body{
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+#searchInput{
+  width: 25%;
+  height: 32px;
+  border-radius: 3px;
+  border: 1px solid #eaeaea;
+  padding: 5px 10px;
+  font-size: 12px;
+  
+}
+
 .cards{
   display: block;
   background-color: #ffffff;
@@ -31,14 +42,15 @@ body{
   text-align: center;
   margin:0 auto;
   padding: 0.8em 0;
-  /* 
+  
   margin-top: 4em;
   margin-left: 4em;
-   */
-}
+   
+ }
 .mediumImg {
   
-  margin: 30px 80px 0 48px;
+  margin: 20px auto;
+  width: 80%;
   
 }
 .summary {
@@ -47,4 +59,89 @@ body{
   margin: 0 auto;
   line-height: 1.6em;
   color: rgb(119, 112, 112);
+} */ 
+
+body {
+  font-family: sans-serif;
+  background-color: #111d4a;
+}
+
+* {
+  box-sizing: border-box;
+}
+h1 {
+  color: #eee;
+  margin-bottom: 30px;
+}
+.container {
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 1000px;
+  text-align: center;
+}
+
+#episodesList {
+  padding-inline-start: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 20px;
+}
+
+.character {
+  list-style-type: none;
+  background-color: #eaeaea;
+  border-radius: 3px;
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+      'name image'
+      'season image'
+      'summary summary';
+  text-align: left;
+}
+
+.character > h3 {
+  grid-area: name;
+  margin-bottom: 0px;
+  font-family: 'Neucha', cursive;
+}
+
+.character > h4 {
+  grid-area: season;
+  margin: 0;
+  margin-top: -18px;
+}
+.character > p {
+grid-area: summary;
+color: #635b5b;
+}
+
+.character > img {
+  max-height: 100px;
+  grid-area: image;
+}
+
+#selectEpisode{
+  margin-bottom: 0.4em;
+}
+
+#selectEpisode , #searchBar {
+  width: 100%;
+  height: 32px;
+  border-radius: 3px;
+  border: 1px solid #eaeaea;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+#searchWrapper {
+  position: relative;
+}
+
+#searchWrapper::after {
+  content: '🔍';
+  position: absolute;
+  top: 7px;
+  right: 15px;
 }
