@@ -101,6 +101,11 @@ h1 {
   text-align: left;
 }
 
+#displaySearchedEpisode{
+  color: white;
+  font-size: 22px;
+}
+
 .character > h3 {
   grid-area: name;
   margin-bottom: 0px;
@@ -144,4 +149,9 @@ color: #635b5b;
   position: absolute;
   top: 7px;
   right: 15px;
+}
+
+.footer{
+  color: white;
+  text-align: center;
 }

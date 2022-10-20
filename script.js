@@ -84,13 +84,16 @@ const selectEl = document.getElementById('selectEpisode');
 const searchBar = document.getElementById("searchBar");
 let gotEpisodes = [];
 
+const displaySearchedEpisode = document.getElementById('displaySearchedEpisode');
+
+
 searchBar.addEventListener('keyup', (e) => {
   const searchString = e.target.value;
   const filteredEpisode = gotEpisodes.filter( (episode) => {
     return (episode.name.toLowerCase().includes(searchString) || episode.summary.toLowerCase().includes(searchString)
             );
   });
-  displayCharacters(filteredEpisode)
+  displayEpisodes(filteredEpisode)
 });
 
 const loadEpisodes = async () => {
@@ -107,7 +110,8 @@ const displayEpisodes = (episodes) => {
     for (let i = 0; i < episodes.length; i++) {
     const optionEl = document.createElement("option")
     optionEl.innerHTML = `S0${episodes[i].season}E${episodes[i].number} - ${episodes[i].name}`
-  selectEl.appendChild(optionEl); } 
+    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/${episodes.length} episodes`
+    selectEl.appendChild(optionEl); } 
     const htmlString = episodes
         .map((character) => {
             return `
