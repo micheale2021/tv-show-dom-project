@@ -110,7 +110,7 @@ const displayEpisodes = (episodes) => {
     for (let i = 0; i < episodes.length; i++) {
     const optionEl = document.createElement("option")
     optionEl.innerHTML = `S0${episodes[i].season}E${episodes[i].number} - ${episodes[i].name}`
-    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/${episodes.length} episodes`
+    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/73 episodes`
     selectEl.appendChild(optionEl); } 
     const htmlString = episodes
         .map((character) => {
