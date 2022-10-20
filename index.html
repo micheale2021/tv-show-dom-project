@@ -5,18 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TV Show Project | Micheale Andemariam (micheale2021
       )</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
-    <div id="root">
+    <!-- <div id="root">
+    <h1>&#x2728;Tv shows &#x2728;</h1>
       <div id="content">
         
 
         
       </div>
-    </div>
+    </div> -->
+    <div class="container">
+      <h1>&#x2728;Tv shows &#x2728;</h1>
+      <select 
+        name="selectEpisode" 
+        id="selectEpisode">
+      </select>
+
+      <div id="searchWrapper">
+          <input
+              type="text"
+              name="searchBar"
+              id="searchBar"
+              placeholder="search for a episodes"
+          />
+      </div>
+      <ul id="episodesList"></ul>
+  </div>
     
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
