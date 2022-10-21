@@ -106,9 +106,20 @@ const loadEpisodes = async () => {
     }
 };
 
+// get the value of select option in input box
+
+// function changeFunction(selectValue){
+//   let x = selectValue.value;
+//   searchBar.value = x;
+// }
+// changeFunction(searchBar.value)
+
+
 const displayEpisodes = (episodes) => {
+    
     for (let i = 0; i < episodes.length; i++) {
-    const optionEl = document.createElement("option")
+    const optionEl = document.createElement("option");
+    optionEl.setAttribute("value", `${episodes[i].name}`)
     optionEl.innerHTML = `S0${episodes[i].season}E${episodes[i].number} - ${episodes[i].name}`
     displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/73 episodes`
     selectEl.appendChild(optionEl); } 
@@ -125,7 +136,7 @@ const displayEpisodes = (episodes) => {
         })
         .join('');
     episodesList.innerHTML = htmlString;
-    optionEl.innerHTML = `${episode.name}`
+    optionEl.innerHTML = `${episodes.name}`
 };
 
 loadEpisodes();
