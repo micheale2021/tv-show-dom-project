@@ -98,7 +98,7 @@ searchBar.addEventListener('keyup', (e) => {
 
 const loadEpisodes = async () => {
     try {
-        const res = await fetch('https://api.tvmaze.com/shows/82/episodes');
+        const res = await fetch('https://api.tvmaze.com/shows');
         gotEpisodes = await res.json();
         displayEpisodes(gotEpisodes);
     } catch (err) {
@@ -106,13 +106,6 @@ const loadEpisodes = async () => {
     }
 };
 
-// get the value of select option in input box
-
-// function changeFunction(selectValue){
-//   let x = selectValue.value;
-//   searchBar.value = x;
-// }
-// changeFunction(searchBar.value)
 
 
 const displayEpisodes = (episodes) => {
@@ -120,15 +113,16 @@ const displayEpisodes = (episodes) => {
     for (let i = 0; i < episodes.length; i++) {
     const optionEl = document.createElement("option");
     optionEl.setAttribute("value", `${episodes[i].name}`)
-    optionEl.innerHTML = `S0${episodes[i].season}E${episodes[i].number} - ${episodes[i].name}`
-    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/73 episodes`
+    optionEl.innerHTML = `${episodes[i].name}`
+    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/240 episodes`
     selectEl.appendChild(optionEl); } 
     const htmlString = episodes
         .map((character) => {
+            //                <h4>S0${character.season}E0${character.number}</h4>
+
             return `
             <li class="character">
                 <h3>${character.name}</h3>
-           <h4>S0${character.season}E0${character.number}</h4>
            <p>${character.summary}</p>
                 <img src="${character.image.medium}"></img>
             </li>
