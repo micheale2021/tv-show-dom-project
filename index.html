@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | Micheale Andemariam (micheale2021
-      )</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+    <title>TV Show Project | Micheale Andemariam (micheale2021 )</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Neucha&display=swap"
+      rel="stylesheet"
+    />
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
@@ -23,29 +25,30 @@
     </div> -->
     <div class="container">
       <h1>&#x2728;Tv shows &#x2728;</h1>
-      <select 
-        name="selectEpisode" 
+      <select
+        name="selectEpisode"
         id="selectEpisode"
-        onchange="changeFunction(this)"> <option value="">---Select shows---</option>
-        
+        onchange="changeFunction(this)"
+      >
+        <option value="">---Select Episode---</option>
       </select>
 
       <div id="searchWrapper">
-          <input
-              type="text"
-              name="searchBar"
-              id="searchBar"
-              placeholder="search for a episodes"
-          />
+        <input
+          type="text"
+          name="searchBar"
+          id="searchBar"
+          placeholder="search for a episodes"
+        />
       </div>
       <h2 id="displaySearchedEpisode"></h2>
       <ul id="episodesList"></ul>
-  </div>
+    </div>
 
-  <footer class="footer">
-    This content is from <a href="https://www.tvmaze.com/">TV MAZE</a>
-  </footer>
-    
+    <footer class="footer">
+      This content is from <a href="https://www.tvmaze.com/">TV MAZE</a>
+    </footer>
+
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
 
