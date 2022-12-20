@@ -2,20 +2,19 @@
 // function setup() {
 //   const allEpisodes = getAllEpisodes();
 //   makePageForEpisodes(allEpisodes);
-  
+
 // }
 
 // // let episodeList = [];
 // // searchInput.addEventListener("keyup", (e) => {
 // //   const searchString = e.target.value;
 // //   episodeList.filter( episode => {
-// //     return (episode.name.includes(searchString) || 
+// //     return (episode.name.includes(searchString) ||
 // //           episode.summary.includes(searchString)
 // //           );
 // //   })
-  
-// // })
 
+// // })
 
 // function makePageForEpisodes(episodeList) {
 //   const rootElem = document.getElementById("root");
@@ -26,7 +25,7 @@
 // //   // rootElem.appendChild(title);
 // //   const selectEl = document.createElement("select")
 // //   selectEl.style.width = "30%"
-  
+
 //   const inputEl = document.createElement("input")
 // //   inputEl.style.marginLeft = "20px";
 //   inputEl.setAttribute("placeholder", "Search ...")
@@ -41,7 +40,7 @@
 // //   pEl.style.marginLeft = "10px"
 // //   rootElem.appendChild(pEl);
 //   rootElem.appendChild(contentEl)
-  
+
 //   for (let i = 0; i < episodeList.length; i++) {
 //     const optionEl = document.createElement("option")
 //     optionEl.innerHTML = `S0${episodeList[i].season}E${episodeList[i].number} - ${episodeList[i].name}`
@@ -60,77 +59,85 @@
 //     const pEl = document.createElement("p");
 //     pEl.setAttribute("class", "summary")
 //     pEl.innerHTML = episodeList[i].summary;
-    
+
 //     cardsEl.appendChild(h3El)
 //     cardsEl.appendChild(imageEl)
 //     cardsEl.appendChild(pEl)
 //   }
-  
+
 // }
-
-
-
 
 // window.onload = setup;
 
 // ===========================================
 
-
-
-const charactersList = document.getElementById
-('charactersList');
-const selectEl = document.getElementById('selectEpisode');
+const charactersList = document.getElementById("charactersList");
+const selectEl = document.getElementById("selectEpisode");
 
 const searchBar = document.getElementById("searchBar");
 let gotEpisodes = [];
 
-const displaySearchedEpisode = document.getElementById('displaySearchedEpisode');
+const displaySearchedEpisode = document.getElementById(
+  "displaySearchedEpisode"
+);
 
-
-searchBar.addEventListener('keyup', (e) => {
+searchBar.addEventListener("keyup", (e) => {
   const searchString = e.target.value;
-  const filteredEpisode = gotEpisodes.filter( (episode) => {
-    return (episode.name.toLowerCase().includes(searchString) || episode.summary.toLowerCase().includes(searchString)
-            );
+  const filteredEpisode = gotEpisodes.filter((episode) => {
+    return (
+      episode.name.toLowerCase().includes(searchString) ||
+      episode.summary.toLowerCase().includes(searchString)
+    );
   });
-  displayEpisodes(filteredEpisode)
+  displayEpisodes(filteredEpisode);
 });
 
 const loadEpisodes = async () => {
-    try {
-        const res = await fetch('https://api.tvmaze.com/shows');
-        gotEpisodes = await res.json();
-        displayEpisodes(gotEpisodes);
-    } catch (err) {
-        console.error(err);
-    }
+  try {
+    const res = await fetch("https://api.tvmaze.com/shows/82/episodes");
+    gotEpisodes = await res.json();
+    displayEpisodes(gotEpisodes);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
-
-
 const displayEpisodes = (episodes) => {
-    
-    for (let i = 0; i < episodes.length; i++) {
+  const x = episodes.length;
+  console.log(episodes);
+  for (let i = 0; i < episodes.length; i++) {
     const optionEl = document.createElement("option");
-    optionEl.setAttribute("value", `${episodes[i].name}`)
-    optionEl.innerHTML = `${episodes[i].name}`
-    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/240 episodes`
-    selectEl.appendChild(optionEl); } 
-    const htmlString = episodes
-        .map((character) => {
-            //                <h4>S0${character.season}E0${character.number}</h4>
+    optionEl.setAttribute("value", `${episodes[i].name}`);
+    optionEl.innerHTML = `${episodes[i].name}`;
+    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/${gotEpisodes.length} episodes`;
+    selectEl.appendChild(optionEl);
+  }
+  let episodeCode;
+  let seasonCode;
+  const htmlString = episodes
+    .map((character) => {
+      console.log(character.number);
+      seasonCode =
+        character.season <= 9
+          ? `S0${character.season}`
+          : `S${character.season}`;
+      episodeCode =
+        character.number <= 9
+          ? `E0${character.number}`
+          : `E${character.number}`;
 
-            return `
+      return `
             <li class="character">
                 <h3>${character.name}</h3>
+<h4> ${seasonCode}${episodeCode}</h4>
            <p>${character.summary}</p>
                 <img src="${character.image.medium}"></img>
             </li>
         `;
-        })
-        .join('');
-    episodesList.innerHTML = htmlString;
-    optionEl.innerHTML = `${episodes.name}`
+    })
+    .join("");
+  episodesList.innerHTML = htmlString;
+  optionEl.innerHTML = `${episodes.name}`;
 };
 
 loadEpisodes();
