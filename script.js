@@ -1,4 +1,10 @@
-
+setInterval(function () {
+  changeColor();
+}, 4000);
+function changeColor() {
+  var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  document.body.style.backgroundColor = "#" + randomColor;
+}
 
 const episodesList = document.getElementById("episodesList");
 const selectEl = document.getElementById("selectEpisode");
@@ -9,6 +15,15 @@ let gotEpisodes = [];
 const displaySearchedEpisode = document.getElementById(
   "displaySearchedEpisode"
 );
+
+selectEl.addEventListener("change", (e) => {
+  const s = selectEl.value.toLowerCase();
+  console.log(s);
+  const filteredEpisode = gotEpisodes.filter((episode) => {
+    return episode.name.toLowerCase().includes(s);
+  });
+  displayEpisodes(filteredEpisode);
+});
 
 searchBar.addEventListener("keyup", (e) => {
   const searchString = e.target.value;
@@ -37,23 +52,28 @@ const displayEpisodes = (episodes) => {
   for (let i = 0; i < episodes.length; i++) {
     const optionEl = document.createElement("option");
     optionEl.setAttribute("value", `${episodes[i].name}`);
-    optionEl.innerHTML = `${episodes[i].name}`;
-    displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/${gotEpisodes.length} episodes`;
+    const seasonCode =
+      episodes[i].season <= 9
+        ? `S0${episodes[i].season}`
+        : `S${episodes[i].season}`;
+    const episodeCode =
+      episodes[i].number <= 9
+        ? `E0${episodes[i].number}`
+        : `E${episodes[i].number}`;
+    optionEl.innerHTML = `${seasonCode}${episodeCode} - ${episodes[i].name}`;
+
     selectEl.appendChild(optionEl);
   }
-  let episodeCode;
-  let seasonCode;
+
+  displaySearchedEpisode.innerHTML = `Displaying ${episodes.length}/${gotEpisodes.length} episodes`;
+
   const htmlString = episodes
     .map((episode) => {
       console.log(episode.number);
-      seasonCode =
-        episode.season <= 9
-          ? `S0${episode.season}`
-          : `S${episode.season}`;
-      episodeCode =
-        episode.number <= 9
-          ? `E0${episode.number}`
-          : `E${episode.number}`;
+      const seasonCode =
+        episode.season <= 9 ? `S0${episode.season}` : `S${episode.season}`;
+      const episodeCode =
+        episode.number <= 9 ? `E0${episode.number}` : `E${episode.number}`;
 
       return `
             <li class="episode">
