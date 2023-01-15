@@ -65,6 +65,17 @@ h1 {
   grid-area: image;
 }
 
+.episode img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.episode:hover img {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
 #selectShow {
   width: 50%;
   height: 32px;
